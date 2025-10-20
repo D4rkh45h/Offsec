@@ -42,7 +42,7 @@ Aquí puedes ver una breve demostración visual de cómo se ve y funciona el blo
 ### Demostración en GIF
 
 <p align="center">
-  <img src="{{ '/assets/gifs/gifOffsec.gif' | relative_url }}" alt="Demostración del blog de D4rkh45h" style="max-width: 100%; height: auto; display: block; margin: 0 auto;">
+  <img src="./assets/gifs/gifOffsec.gif" alt="Demostración del blog de D4rkh45h" style="max-width: 100%; height: auto; display: block; margin: 0 auto;">
   <em>Un vistazo rápido a la interfaz y navegación de D4rkh45h's Offsec Blog.</em>
 </p>
 
