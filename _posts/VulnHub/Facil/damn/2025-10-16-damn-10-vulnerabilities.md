@@ -12,9 +12,9 @@ show_image_post: true
 image: /assets/img/maquinas/VulnHub/damn/maquina.png # Asegúrate de que esta imagen exista
 ---
 
-## 💻 VulnHub - damn 10 Vulnerabilities
+## 💻 VulnHub - DAMN 10 Vulnerabilities
 
-## Overview
+### Overview
 
 **damn 10 Vulnerabilities** fue una máquina de dificultad **Fácil** que me permitió explorar las 10 vulnerabilidades más comunes en páginas web.
 
@@ -41,3 +41,25 @@ Ahora veremos que dentro del codigo fuente tiene una vulnerabilidad, la cual se 
 ![Cap3](/assets/img/maquinas/VulnHub/damn/Brute-Force/fuerza_bruta-3Captura.png)
 ---
 
+## Command Injection
+
+### Vista Rápida
+
+Ahora entraremos al apartado de **Command Injection**, para ver esta vulnerabilidad.
+
+![Cap4](/assets/img/maquinas/VulnHub/damn/Command-Injection/Command-Injection_Cap1.png)
+
+### Codigo Fuente
+
+Ahora veremos un poco el codigo fuente para ver las vulnerabilidades que tiene en este apartado. Podemos ver que en este codigo nos permitiría
+inyectar código malicioso para poder ver fichero o incluso una reverse shell, que nos podría dar el control de la máquina.
+
+![Cap5](/assets/img/maquinas/VulnHub/damn/Command-Injection/Command-Injection_Cap2.png)
+
+### Explotación de las Vulnerabilidades
+
+Ahora explotaremos esta vulnerabilidad por medio de este comando 120.0.0.1 && whoami,
+con el cual veremos que nos dirá que usuario esta
+lanzando este comando.
+
+![Cap6](/assets/img/maquinas/VulnHub/damn/Command-Injection/Command-Injection_Cap3.png)
