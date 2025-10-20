@@ -53,7 +53,7 @@ Aquí puedes ver una breve demostración visual de cómo se ve y funciona el blo
 You can find me at:
 
 *   **GitHub:** [D4rkh45h](https://github.com/D4rkh45h)
-*   **LinkedIn:** [Your LinkedIn profile, if you wish to share it]
+*   **LinkedIn:** [https://www.linkedin.com/in/pedro-jos%C3%A9-461479353/]
 
 ---
 
