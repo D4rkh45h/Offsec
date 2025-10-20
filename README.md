@@ -1,11 +1,3 @@
----
-layout: home
-# Index page
-title: D4rkh45h's Offsec Blog
-slug: Offsec
-tags: [cybersecurity, pentesting, hacking, hackthebox, vulnhub, writeups, offensive-security]
----
-
 [![Developer](https://img.shields.io/badge/Developer-d4rkh45h-brightgreen.svg?style=flat-square)](https://github.com/d4rkh45h)
 [![Category](https://img.shields.io/badge/Category-Cybersecurity-blue.svg?style=flat-square)](https://github.com/topics/cybersecurity)
 [![Type](https://img.shields.io/badge/Type-Writeups-green.svg?style=flat-square)](https://github.com/topics/writeups)
