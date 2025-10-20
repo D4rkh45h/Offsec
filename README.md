@@ -1,43 +1,80 @@
-# Chirpy Starter
+---
+layout: home
+# Index page
+title: D4rkh45h's Offsec Blog
+slug: Offsec
+tags: [cybersecurity, pentesting, hacking, hackthebox, vulnhub, writeups, offensive-security]
+---
 
-[![Gem Version](https://img.shields.io/gem/v/jekyll-theme-chirpy)][gem]&nbsp;
-[![GitHub license](https://img.shields.io/github/license/cotes2020/chirpy-starter.svg?color=blue)][mit]
+[![Developer](https://img.shields.io/badge/Developer-d4rkh45h-brightgreen.svg?style=flat-square)](https://github.com/d4rkh45h)
+[![Category](https://img.shields.io/badge/Category-Cybersecurity-blue.svg?style=flat-square)](https://github.com/topics/cybersecurity)
+[![Type](https://img.shields.io/badge/Type-Writeups-green.svg?style=flat-square)](https://github.com/topics/writeups)
+[![Platform](https://img.shields.io/badge/Platform-HackTheBox%20%7C%20VulnHub-orange.svg?style=flat-square)](https://github.com/topics/hackthebox)
+[![Content](https://img.shields.io/badge/Content-Penetration_Testing-red.svg?style=flat-square)](https://github.com/topics/penetration-testing)
+[![Language](https://img.shields.io/badge/Language-Spanish-informational.svg?style=flat-square)](https://github.com/topics/spanish)
 
-When installing the [**Chirpy**][chirpy] theme through [RubyGems.org][gem], Jekyll can only read files in the folders
-`_data`, `_layouts`, `_includes`, `_sass` and `assets`, as well as a small part of options of the `_config.yml` file
-from the theme's gem. If you have ever installed this theme gem, you can use the command
-`bundle info --path jekyll-theme-chirpy` to locate these files.
+<div align="center">
+  <div style="display: inline-flex; align-items: center; gap: 8px; margin-bottom: 25px; padding-top: 10px;">
+    <a href="README.md" style="text-decoration: none; display: inline-flex; align-items: center; gap: 8px; margin-right: 8px;" title="Español">
+      <img src="https://flagpedia.net/data/flags/w1600/es.png" alt="Español" width="36" style="vertical-align: middle;">
+      <span style="color: white; font-size: 18px; font-weight: 600; font-family: sans-serif;">  Español</span>
+    </a>
+    <span style="color: grey; font-size: 18px; font-family: sans-serif; margin-right: 8px;">|</span>
+    <a href="README.en.md" style="text-decoration: none; display: inline-flex; align-items: center; gap: 8px;" title="English">
+      <img src="https://flagpedia.net/data/flags/w1600/us.png" alt="English" width="36" style="vertical-align: middle;">
+      <span style="color: deepskyblue; font-size: 18px; font-family: sans-serif; text-decoration: underline;">  English</span>
+    </a>
+  </div>
+</div>
 
-The Jekyll team claims that this is to leave the ball in the user’s court, but this also results in users not being
-able to enjoy the out-of-the-box experience when using feature-rich themes.
+# Bienvenido al Blog de D4rkh45h - Writeups de Máquinas 🚀
 
-To fully use all the features of **Chirpy**, you need to copy the other critical files from the theme's gem to your
-Jekyll site. The following is a list of targets:
+Hola y bienvenido a mi espacio dedicado a la ciberseguridad ofensiva. Aquí encontrarás una colección de **writeups (resoluciones paso a paso)** de máquinas de plataformas como **Hack The Box** y **VulnHub**, así como de otras plataformas de laboratorio de hacking que encuentre interesantes.
 
-```shell
-.
-├── _config.yml
-├── _plugins
-├── _tabs
-└── index.html
-```
+Mi objetivo es documentar el proceso de pentesting y explotación de estas máquinas, compartiendo el conocimiento adquirido y consolidando mi aprendizaje en el camino. Cada writeup está diseñado para ser claro y detallado, cubriendo desde la fase inicial de reconocimiento hasta la obtención de los privilegios de usuario y root.
 
-To save you time, and also in case you lose some files while copying, we extract those files/configurations of the
-latest version of the **Chirpy** theme and the [CD][CD] workflow to here, so that you can start writing in minutes.
+## ¿Qué encontrarás aquí?
 
-## Usage
+*   **Análisis detallados:** Cada entrada desglosará las vulnerabilidades encontradas, las herramientas utilizadas y las técnicas aplicadas.
+*   **Aprendizaje continuo:** Un recurso para aquellos que están aprendiendo y quieren ver diferentes enfoques para resolver máquinas.
+*   **Categorías por plataforma:** Encuentra fácilmente las resoluciones de tus máquinas favoritas, organizadas por plataforma y dificultad.
 
-Check out the [theme's docs](https://github.com/cotes2020/jekyll-theme-chirpy/wiki).
+Espero que este contenido te sea útil en tu propio viaje por el apasionante mundo del hacking ético. ¡No dudes en explorar y aprender!
 
-## Contributing
+---
 
-This repository is automatically updated with new releases from the theme repository. If you encounter any issues or want to contribute to its improvement, please visit the [theme repository][chirpy] to provide feedback.
+## 📸 Vista Previa del Blog
 
-## License
+Aquí puedes ver una breve demostración visual de cómo se ve y funciona el blog.
 
-This work is published under [MIT][mit] License.
+### Demostración en GIF
 
-[gem]: https://rubygems.org/gems/jekyll-theme-chirpy
-[chirpy]: https://github.com/cotes2020/jekyll-theme-chirpy/
-[CD]: https://en.wikipedia.org/wiki/Continuous_deployment
-[mit]: https://github.com/cotes2020/chirpy-starter/blob/master/LICENSE
+<p align="center">
+  <img src="{{ '/assets/gifs/gifOffsec.gif' | relative_url }}" alt="Demostración del blog de D4rkh45h" style="max-width: 100%; height: auto; display: block; margin: 0 auto;">
+  <em>Un vistazo rápido a la interfaz y navegación de D4rkh45h's Offsec Blog.</em>
+</p>
+
+---
+
+## Contacto
+
+Puedes encontrarme en:
+
+*   **GitHub:** [D4rkh45h](https://github.com/D4rkh45h)
+*   **LinkedIn:** [Tu perfil de LinkedIn, si quieres compartirlo]
+
+---
+
+## Documentación Adicional
+
+Aquí encontrarás información más detallada sobre el proyecto:
+
+*   🤝 [**Código de Conducta**](.github/CODIGO_DE_CONDUCTA.md) - Normas para una comunidad respetuosa.
+*   📬 [**Cómo Contribuir**](.github/COMO_CONTRIBUIR.md) - Pasos para colaborar con el proyecto.
+*   🔐 [**Seguridad**](.github/SEGURIDAD.md) - Información sobre cómo reportar vulnerabilidades.
+*   ⚠️ [**Aviso Legal**](.github/AVISO_LEGAL.md) - Cláusulas y advertencias legales importantes.
+*   📢 [**Soporte**](.github/SOPORTE.md) - Dónde obtener ayuda o hacer preguntas.
+
+---
+
+¡Feliz hacking!
