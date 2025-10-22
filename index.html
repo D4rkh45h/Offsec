@@ -86,7 +86,7 @@
   
 
   <!-- Theme style -->
-  <link rel="stylesheet" href="/Offsec/assets/css/jekyll-theme-chirpy.css">
+  <link rel="stylesheet" href="{{ '/assets/css/jekyll-theme-chirpy.css' | relative_url }}">
 
   <!-- Web Font -->
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Lato:wght@300;400&family=Source+Sans+Pro:wght@400;600;700;900&display=swap">
@@ -106,7 +106,7 @@
 
   <!-- Scripts -->
 
-  <script src="/Offsec/assets/js/dist/theme.min.js"></script>
+  <script src="{{ '/assets/js/dist/theme.min.js' | relative_url }}"></script>
 
   <!-- JS selector for site. -->
 
@@ -182,8 +182,8 @@
   <script defer src="https://cdn.jsdelivr.net/combine/npm/simple-jekyll-search@1.10.0/dest/simple-jekyll-search.min.js,npm/loading-attribute-polyfill@2.1.1/dist/loading-attribute-polyfill.umd.min.js,npm/dayjs@1.11.13/dayjs.min.js,npm/dayjs@1.11.13/locale/en.js,npm/dayjs@1.11.13/plugin/relativeTime.js,npm/dayjs@1.11.13/plugin/localizedFormat.js"></script>
 
 <!-- Se agregó app.min.js y categories.min.js, se eliminó home.min.js si esta es la plantilla de categorías -->
-<script defer src="/Offsec/assets/js/dist/app.min.js"></script>
-<script defer src="/Offsec/assets/js/dist/categories.min.js"></script>
+<script defer src="{{ '/assets/js/dist/app.min.js' | relative_url }}"></script>
+<script defer src="{{ '/assets/js/dist/categories.min.js' | relative_url }}"></script>
 
 
 <!-- Pageviews -->
@@ -202,9 +202,9 @@
 
 <aside aria-label="Sidebar" id="sidebar" class="d-flex flex-column align-items-end">
   <header class="profile-wrapper">
-    <a href="/Offsec/" id="avatar" class="rounded-circle"><img src="/Offsec/assets/img/profile.png" width="112" height="112" alt="avatar" onerror="this.style.display='none'"></a>
+    <a href="{{ '/Offsec/' | relative_url }}" id="avatar" class="rounded-circle"><img src="{{ '/assets/img/profile.png' | relative_url }}" width="112" height="112" alt="avatar" onerror="this.style.display='none'"></a>
 
-    <a class="site-title d-block" href="/Offsec/">D4rkh45h's Blog</a>
+    <a class="site-title d-block" href="{{ '/Offsec/' | relative_url }}">D4rkh45h's Blog</a>
     <p class="site-subtitle fst-italic mb-0">Escribiendo sobre ciberseguridad, hacking y retos.</p>
   </header>
   <!-- .profile-wrapper -->
@@ -213,7 +213,7 @@
     <ul class="nav">
       <!-- home -->
       <li class="nav-item active">
-        <a href="/Offsec/" class="nav-link">
+        <a href="{{ '/Offsec/' | relative_url }}" class="nav-link">
           <i class="fa-fw fas fa-home"></i>
           <span>HOME</span>
         </a>
@@ -221,7 +221,7 @@
       <!-- the real tabs -->
       
         <li class="nav-item">
-          <a href="/Offsec/categories/" class="nav-link">
+          <a href="{{ '/Offsec/categories/' | relative_url }}" class="nav-link">
             <i class="fa-fw fas fa-stream"></i>
             
 
@@ -231,7 +231,7 @@
         <!-- .nav-item -->
       
         <li class="nav-item">
-          <a href="/Offsec/tags/" class="nav-link">
+          <a href="{{ '/Offsec/tags/' | relative_url }}" class="nav-link">
             <i class="fa-fw fas fa-tags"></i>
             
 
@@ -241,7 +241,7 @@
         <!-- .nav-item -->
       
         <li class="nav-item">
-          <a href="/Offsec/archives/" class="nav-link">
+          <a href="{{ '/Offsec/archives/' | relative_url }}" class="nav-link">
             <i class="fa-fw fas fa-archive"></i>
             
 
@@ -251,7 +251,7 @@
         <!-- .nav-item -->
       
         <li class="nav-item">
-          <a href="/Offsec/about/" class="nav-link">
+          <a href="{{ '/Offsec/about/' | relative_url }}" class="nav-link">
             <i class="fa-fw fas fa-user-circle"></i>
             
 
@@ -343,7 +343,7 @@
 
       
         <a
-          href="/Offsec/feed.xml"
+          href="{{ '/Offsec/feed.xml' | relative_url }}"
           aria-label="rss"
           
 
