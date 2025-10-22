@@ -3,3 +3,9 @@ layout: category
 title: "Categorías"
 permalink: /categories/
 ---
+<h1>Categorías</h1>
+<ul>
+  {% for category in site.categories %}
+    <li><a href="{{ category | relative_url }}">{{ category.title }}</a></li>
+  {% endfor %}
+</ul>
