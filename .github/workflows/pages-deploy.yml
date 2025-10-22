@@ -1,59 +1,73 @@
-name: Build and Deploy Jekyll site to GitHub Pages
-
+name: "Build and Deploy"
 on:
   push:
     branches:
-      - main # Asegúrate de que esta es la rama principal de tu repositorio (puede ser 'master')
+      - main
+      - master
+    paths-ignore:
+      - .gitignore
+      - README.md
+      - LICENSE
 
-  # Permite ejecutar este workflow manualmente desde la pestaña Actions
+  # Allows you to run this workflow manually from the Actions tab
   workflow_dispatch:
 
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+# Allow one concurrent deployment
+concurrency:
+  group: "pages"
+  cancel-in-progress: true
+
 jobs:
-  jekyll-build:
+  build:
     runs-on: ubuntu-latest
+
     steps:
-      - name: Checkout repository
+      - name: Checkout
         uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+          # submodules: true
+          # If using the 'assets' git submodule from Chirpy Starter, uncomment above
+          # (See: https://github.com/cotes2020/chirpy-starter/tree/main/assets)
+
+      - name: Setup Pages
+        id: pages
+        uses: actions/configure-pages@v4
 
       - name: Setup Ruby
         uses: ruby/setup-ruby@v1
         with:
-          # Es buena idea especificar una versión de Ruby compatible con Jekyll y tu sistema.
-          # Por ejemplo, '3.3' o '3.2'. Puedes verificar qué versión usa GitHub Pages.
-          ruby-version: '3.3' # O la versión que prefieras y sea compatible, por ejemplo '3.2'
-          bundler-cache: true # Instala y cachea las gemas con Bundler
+          ruby-version: 3.3
+          bundler-cache: true
 
-      - name: Install dependencies # Asegura que todas las gemas del Gemfile se instalen
-        run: bundle install --gemfile Gemfile
-
-      - name: Build Jekyll site
-        # Este es el paso CRUCIAL donde Jekyll procesa tus archivos, incluyendo Liquid,
-        # y genera el sitio estático en el directorio '_site'.
-        run: bundle exec jekyll build --config _config.yml
+      - name: Build site
+        run: bundle exec jekyll b -d "_site${{ steps.pages.outputs.base_path }}"
         env:
-          JEKYLL_ENV: production # Asegura que Jekyll se construya en modo producción
+          JEKYLL_ENV: "production"
 
-      # Opcional: Ejecutar HTMLProofer. Este paso DEBE ir DESPUÉS de 'Build Jekyll site'.
-      # Hemos añadido opciones para ignorar algunos tipos de errores comunes y permitir el despliegue.
-      - name: Run HTMLProofer
+      - name: Test site
         run: |
           bundle exec htmlproofer _site \
-            --disable-external \
-            --allow-hash-href \
-            --url-ignore "/Offsec/" \
-            --url-ignore "/Offsec/{{.*?}}" \
-            --alt-ignore "/profile.png/" # Ignorar alt text si es un problema recurrente, aunque es mejor arreglarlo.
-        continue-on-error: true # Permite que el workflow continúe incluso si HTMLProofer encuentra fallos.
-                                # Considera quitar esto una vez que todo funcione perfectamente.
+            \-\-disable-external \
+            \-\-ignore-urls "/^http:\/\/127.0.0.1/,/^http:\/\/0.0.0.0/,/^http:\/\/localhost/"
 
-      - name: Deploy to GitHub Pages
-        # Este paso solo se ejecutará si los anteriores (build y htmlproofer) tuvieron éxito.
-        # Usa la acción peaceiris/actions-gh-pages para publicar el contenido de '_site'.
-        if: success()
-        uses: peaceiris/actions-gh-pages@v3
+      - name: Upload site artifact
+        uses: actions/upload-pages-artifact@v3
         with:
-          github_token: ${{ secrets.GITHUB_TOKEN }}
-          publish_dir: ./_site # Indica que el contenido a publicar es el del directorio _site
-          # CNAME: your-custom-domain.com # Descomenta y configura si usas un dominio personalizado
-          # user_name: 'github-actions[bot]' # Opcional: Define el autor del commit de despliegue
-          # user_email: 'github-actions[bot]@users.noreply.github.com' # Opcional
+          path: "_site${{ steps.pages.outputs.base_path }}"
+
+  deploy:
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    runs-on: ubuntu-latest
+    needs: build
+    steps:
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4
