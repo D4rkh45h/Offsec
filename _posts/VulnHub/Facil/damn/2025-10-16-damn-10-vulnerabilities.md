@@ -165,10 +165,67 @@ de la máquina o incluso cosas peores. Pero vamos a comprobarlo con Burp Suite.
 
 Ahora capturaremos la petición y la llevaremos al intrududer para probar distintas extensiones y ver si las acepta.
 
-![Cap17](/assets/img/maquinas/VulnHub/damn/File-Upload/File-Upload_Cap3.png)
+![Cap18](/assets/img/maquinas/VulnHub/damn/File-Upload/File-Upload_Cap3.png)
 
 Realizaremos el ataque y veremos que las acepta todas, con lo cual podríamos subir el archivo que quisieramos que nos dejaría 
 subirlo sin darnos ningún error.
 
-![Cap17](/assets/img/maquinas/VulnHub/damn/File-Upload/File-Upload_Cap4.png)
+![Cap19](/assets/img/maquinas/VulnHub/damn/File-Upload/File-Upload_Cap4.png)
+---
 
+
+
+## SQL Injection
+
+### Vista Rápida
+
+Ahora veremos la vulnerabilidad de SQL Injection, para ver como llevar a cabo injecciones de este tipo.
+
+
+![Cap20](/assets/img/maquinas/VulnHub/damn/SQL-Injection/SQL-Injection_Cap1.png)
+
+
+### Codigo Fuente
+
+Ahora veremos el codigo fuente para ver por donde podemos vulnerar el mismo código, en el código podemos ver que la sentencia devuelve dos parametros, con lo cual en la sentencia deberemos de introducir también otros dos parametros para que la sentencia se complete correctamente.
+
+![Cap21](/assets/img/maquinas/VulnHub/damn/SQL-Injection/SQL-Injection_Cap2.png)
+
+### Explotación de las Vulnerabilidades
+
+Ahora interceptaremos la request, por medio de burpsuite y veremos como poder explotarlo.
+
+Por medio de este comando **'UNION+SELECT+user,NULL%23**, podriamos sacar la versión de esta base de datos, en este caso para la base de datos de MariaDB.
+
+El **%23** del final de la sentencia corresponde con la **#**, que se escribe asi para que la petición no interprete este simbolo, pero para que la base de datos si que lo interprete como un comentario y comente lo que queda de sentencia, por que si lo ponemos literalmente aparecerá un error ya que la petición lo interpretará y comentará todo lo que queda de petición a partir de el simbolo.
+
+![Cap22](/assets/img/maquinas/VulnHub/damn/SQL-Injection/SQL-Injection_Cap3.png)
+---
+
+
+## SQL Injection(Blind)
+
+### Vista Rápida
+
+Primero miraremos un poco como se ve la página, en la cual explotaremos la vulnerabilidad de
+SQL Injection(Blind), que se le llama así, por que la base de datos no nos proporcionar ningun error.
+
+![Cap23](/assets/img/maquinas/VulnHub/damn/SQL-Injection(Blind)/SQL-Injection(Blind)_Cap1.png)
+
+### Codigo Fuente
+
+Ahora veremos el código fuente para ver por donde atacar esta máquina, veremos que la consulta devuelve dos parametros, esto
+es muy importante de cara a la hora de realizar el ataque SQL Injection(Blind).
+
+![Cap24](/assets/img/maquinas/VulnHub/damn/SQL-Injection(Blind)/SQL-Injection(Blind)_Cap2.png)
+
+### Explotación de las Vulnerabilidades
+
+Ahora recogeremos la petición con Burp Suite y la llevaremos al Repeater.
+
+Una vez allí, introduciremos el siguiente comando para ver la vulnerabilidad, **id=1'+UNION+SELECT+SLEEP(10),NULL%23**, esto lo que hará
+será que la base de datos tarde 10 segundos en respondernos, y podemos jugar con esta vulnerabilidad, por medio de
+condiciones como, si en la tabla de usuarios hay un usuario que se llama Admin, SLEEP(10), y si ese usuario se encuentra en la base de datos,
+la base de datos tardará 10 segundos en responder.
+
+![Cap25](/assets/img/maquinas/VulnHub/damn/SQL-Injection(Blind)/SQL-Injection(Blind)_Cap3.png)
