@@ -377,12 +377,12 @@ pero la máquinan no tiene conexión a internet, con lo cual la explotaremos de 
 ### Explotación de las Vulnerabilidades
 
 Ahora lo primero que haremos será subir un código malicioso dentro de la máquina por medio del file upload, el código del script es este:
-**
+```
 // Este script cambiará toda la página para confirmar el éxito.
 document.body.style.backgroundColor = '#1a1a1a';
 document.body.innerHTML = '<h1 style="color: lime; font-size: 4em; text-align: center; margin-top: 20%;">CSP Bypassed using \'self\'!</h1>';
 
-console.log('Si ves esto en la consola, el exploit ha funcionado.');**
+console.log('Si ves esto en la consola, el exploit ha funcionado.');```
 
 Lo guardaremos con la extensión .js y lo subiremos a la máquina.
 
