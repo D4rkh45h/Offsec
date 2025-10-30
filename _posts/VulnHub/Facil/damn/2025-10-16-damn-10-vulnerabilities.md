@@ -229,3 +229,177 @@ condiciones como, si en la tabla de usuarios hay un usuario que se llama Admin, 
 la base de datos tardará 10 segundos en responder.
 
 ![Cap25](/assets/img/maquinas/VulnHub/damn/SQL-Injection(Blind)/SQL-Injection(Blind)_Cap3.png)
+---
+
+## Weak Session IDs
+
+### Vista Rápida
+
+Ahora entraremos dentro del apartado de Weak Session IDs, para ver esta vulnerabilidad a fondo.
+La vulnerabilidad de "Weak Session ID" (ID de Sesión Débil) ocurre cuando el identificador que el
+servidor le da a un usuario para recordar quién es, es predecible, como en este caso.
+
+![Cap26](/assets/img/maquinas/VulnHub/damn/Weak-Session-IDs/Weak-Session-IDs_Cap1.png)
+
+### Codigo Fuente
+
+Ahora veremos el código fuente en busca de vulnerabilidades, dentro de este veremos que el identificador de cookie,
+no se genera de una forma aleatoria, sino que se coje el numero de la anterior cookie creada y se le suma 1, 
+con lo cual esto es un error ya que se debería generar aleatoriamente, para no poder saber las id de las cookies de los demás,
+ya que si tu sabes que el id de la cookie que le dará al sigiente usuario será la ultima id de cookie que es la tuya, +1, solamente
+sabiendo tu id de cookie, ya podras entrar dentro de la sesión del nuevo usuario.
+
+![Cap27](/assets/img/maquinas/VulnHub/damn/Weak-Session-IDs/Weak-Session-IDs_Cap2.png)
+
+### Explotación de las Vulnerabilidades
+
+Ahora explotaremos esta vulnerabilidad, entrando en la sesión de otro usuario ya que sabemos que el id de las cookies es secuencial,
+es decir que va de esta forma, dvwaSession=1, dvwaSession=2, dvwaSession=3, dvwaSession=4, dvwaSession=5, etc. Sabiendo esto entraremos en la sesión de otro usuario.
+
+![Cap28](/assets/img/maquinas/VulnHub/damn/Weak-Session-IDs/Weak-Session-IDs_Cap3.png)
+
+Ahora cambiaremos el id a 2 para entrar en la sesión del usuario el cual su dvwaSession corresponde al número 2.
+
+![Cap29](/assets/img/maquinas/VulnHub/damn/Weak-Session-IDs/Weak-Session-IDs_Cap4.png)
+
+
+
+## xss(DOM)
+
+### Vista Rápida
+
+Ahora entraremos dentro del apartado de XSS(DOM), para ver de que se trata esta vulnerabilidad, pero antes
+buscaremos la definición de esta vulnerabilidad.
+Es un tipo de vulnerabilidad de seguridad web que ocurre cuando una aplicación web contiene código del lado
+del cliente que procesa datos de una fuente no confiable de una manera insegura.
+A diferencia de otros tipos de XSS, en un ataque de DOM XSS, la carga maliciosa se ejecuta
+como resultado de la modificación del entorno del DOM en el navegador de la víctima.
+
+![Cap30](/assets/img/maquinas/VulnHub/damn/XSS(DOM)/XSS(DOM)_Cap1.png)
+
+### Codigo Fuente
+
+Ahora veremos el código fuente, veremos que en este codigo fuente no sacaremos mucho en claro.
+
+![Cap31](/assets/img/maquinas/VulnHub/damn/XSS(DOM)/XSS(DOM)_Cap2.png)
+
+### Explotación de las Vulnerabilidades
+
+Ahora intentaremos explotar esta vulnerabilidad, para ello primero elegiremos un idioma y
+clicaremos en select, una vez que hayamos hecho esto veremos que la url cambia, probaremos a inyectar el código
+en este sitio, para ver que ocurre.
+
+![Cap32](/assets/img/maquinas/VulnHub/damn/XSS(DOM)/XSS(DOM)_Cap3.png)
+
+El código que inyectaremos sera este, **<script>alert(1);</script>**, si nos aparece una alerta, esta parte de la web
+es vulnerable a código javascript, con lo cual es una vulnerabilidad XSS en este caso de tipo DOM.
+
+![Cap33](/assets/img/maquinas/VulnHub/damn/XSS(DOM)/XSS(DOM)_Cap4.png)
+---
+
+
+## xss(Reflected)
+
+### Vista Rápida
+
+Ahora entraremos dentro de este otro apartado para ver de que se trata esta vulnerabilidad.
+En un ataque XSS Reflejado, el código malicioso viaja al servidor a través de la URL (en un enlace), y el servidor lo refleja o hace eco de vuelta en la respuesta HTML sin validarlo. El navegador de la víctima recibe este código y, al confiar en la respuesta del servidor, lo ejecuta.
+
+La clave es: **El ataque no se almacena en el sitio web.** Solo funciona si la víctima hace clic en el enlace malicioso que ha preparado el atacante.
+
+![Cap34](/assets/img/maquinas/VulnHub/damn/XSS(Reflected)/XSS(Reflected)_Cap1.png)
+
+### Codigo Fuente
+
+Ahora veremos el código fuente haber si detectamos alguna vulnerabilidad desde aquí, y veremos que en el código no hay nada que impida meter código
+javascript.
+
+![Cap35](/assets/img/maquinas/VulnHub/damn/XSS(Reflected)/XSS(Reflected)_Cap2.png)
+
+### Explotación de las Vulnerabilidades
+
+Ahora inyectaremos el mismo código de antes dentro de este campo de texto para ver que pasa.
+
+![Cap36](/assets/img/maquinas/VulnHub/damn/XSS(Reflected)/XSS(Reflected)_Cap3.png)
+
+![Cap37](/assets/img/maquinas/VulnHub/damn/XSS(Reflected)/XSS(Reflected)_Cap4.png)
+
+Veremos que parece que hace lo mismo, pero recordamos que este ataque no se guarda dentro del sitio web del cliente, que somos nosotros,
+sino que solo funciona si la víctima hace click en el enlace malicioso que ha preparado el atacante.
+---
+
+
+## xss(Stored)
+
+### Vista Rápida
+
+Ahora entraremos dentro de este otro apartado para ver la vulnerabilidad de XSS de tipo Stored, que se basa en:
+
+El XSS Stored se encuentra en funcionalidades donde los usuarios pueden introducir datos que serán vistos por otras personas.
+
+![Cap38](/assets/img/maquinas/VulnHub/damn/XSS(Stored)/XSS(Stored)_Cap1.png)
+
+### Codigo Fuente
+
+Ahora veremos el código para ver si tiene alguna vulnerabilidad, y veremos que no tiene ningun control, para este tipo de 
+vulnerabilidad.
+
+![Cap39](/assets/img/maquinas/VulnHub/damn/XSS(Stored)/XSS(Stored)_Cap2.png)
+
+### Explotación de las Vulnerabilidades
+
+Ahora introduciremos este código con el nombre que nosotros queramos, **<h1 style="color:red;font-size:48px;">PAGINA VULNERABLE</h1><style>body { background-color: black; }</style>**, y veremos como aparece un texto como el de la imagen, el cual se quedará permanente mente dentro de la página y lo verán
+todos los usuarios que entren en ella, al ser un XSS de tipo Stored.
+
+![Cap40](/assets/img/maquinas/VulnHub/damn/XSS(Stored)/XSS(Stored)_Cap3.png)
+---
+
+## CSP Bypass
+
+### Vista Rápida
+
+Ahora veremos una de las últimas vulnerabilidades que es la de CSP Bypass, la cual consiste en ver
+si el **Content Security Policy**, esta bien definido, y si vemos que tiene alguna vulnerabilidad, intentar
+explotarla.
+
+![Cap41](/assets/img/maquinas/VulnHub/damn/CSP-Bypass/CSP-Bypass_Cap1.png)
+
+### Codigo Fuente
+
+Ahora veremos el código fuente, veremos que el Content Securty Policy, no esta bien definido, ya que
+nos deja introducir código de pastebin, que es un lugar público en el cual cualquier persona puede poner código
+y mandarlo a esta página y ejecutarlo desde aquí, en un principio explotaríamos esta vulnerabilidad por medio de pastebin,
+pero la máquinan no tiene conexión a internet, con lo cual la explotaremos de forma local subiendo un arhivo malicioso, ya que 
+**tambien ejecuta scripts que esten subidos dentro de esta máquina**, devido a que esta definido en el CSP.
+
+![Cap42](/assets/img/maquinas/VulnHub/damn/CSP-Bypass/CSP-Bypass_Cap2.png)
+
+### Explotación de las Vulnerabilidades
+
+Ahora lo primero que haremos será subir un código malicioso dentro de la máquina por medio del file upload, el código del script es este:
+**
+// Este script cambiará toda la página para confirmar el éxito.
+document.body.style.backgroundColor = '#1a1a1a';
+document.body.innerHTML = '<h1 style="color: lime; font-size: 4em; text-align: center; margin-top: 20%;">CSP Bypassed using \'self\'!</h1>';
+
+console.log('Si ves esto en la consola, el exploit ha funcionado.');**
+
+Lo guardaremos con la extensión .js y lo subiremos a la máquina.
+
+![Cap43](/assets/img/maquinas/VulnHub/damn/CSP-Bypass/CSP-Bypass_Cap3.png)
+
+Ahora veremos si se ha subido correctamente.
+
+![Cap44](/assets/img/maquinas/VulnHub/damn/CSP-Bypass/CSP-Bypass_Cap4.png)
+
+Una vez comprobado que lo hemos subido correctamente, lo buscaremos por medio del campo de texto de la vulnerabilidad de CSP Bypass,
+para que se ejecute el código que hay dentro de este script, y veremos que el .js se ejecutará correctamente.
+
+![Cap45](/assets/img/maquinas/VulnHub/damn/CSP-Bypass/CSP-Bypass_Cap5.png)
+
+Lo buscaremos con este comando **../../hackable/uploads/exploit.js**
+
+![Cap46](/assets/img/maquinas/VulnHub/damn/CSP-Bypass/CSP-Bypass_Cap6.png)
+
+Una vez que le demos a include, veremos como se habrá ejecutado el código que tenía el .js que hemos creado.
+
