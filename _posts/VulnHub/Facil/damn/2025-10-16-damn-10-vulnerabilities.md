@@ -348,7 +348,7 @@ vulnerabilidad.
 
 ### Explotación de las Vulnerabilidades
 
-Ahora introduciremos este código con el nombre que nosotros queramos, **<h1 style="color:red;font-size:48px;">PAGINA VULNERABLE</h1><style>body { background-color: black; }</style>**, y veremos como aparece un texto como el de la imagen, el cual se quedará permanente mente dentro de la página y lo verán
+Ahora introduciremos este código con el nombre que nosotros queramos, ```<h1 style="color:red;font-size:48px;">PAGINA VULNERABLE</h1><style>body { background-color: black; }</style>```, y veremos como aparece un texto como el de la imagen, el cual se quedará permanente mente dentro de la página y lo verán
 todos los usuarios que entren en ella, al ser un XSS de tipo Stored.
 
 ![Cap40](/assets/img/maquinas/VulnHub/damn/XSS(Stored)/XSS(Stored)_Cap3.png)
@@ -377,12 +377,12 @@ pero la máquinan no tiene conexión a internet, con lo cual la explotaremos de 
 ### Explotación de las Vulnerabilidades
 
 Ahora lo primero que haremos será subir un código malicioso dentro de la máquina por medio del file upload, el código del script es este:
-```
-// Este script cambiará toda la página para confirmar el éxito.
-document.body.style.backgroundColor = '#1a1a1a';
-document.body.innerHTML = '<h1 style="color: lime; font-size: 4em; text-align: center; margin-top: 20%;">CSP Bypassed using \'self\'!</h1>';
 
-console.log('Si ves esto en la consola, el exploit ha funcionado.');```
+```// Este script cambiará toda la página para confirmar el éxito.```
+```document.body.style.backgroundColor = '#1a1a1a';```
+```document.body.innerHTML = '<h1 style="color: lime; font-size: 4em; text-align: center;``` ```margin-top: 20%;">CSP Bypassed using \'self\'!</h1>';```
+
+```console.log('Si ves esto en la consola, el exploit ha funcionado.');```
 
 Lo guardaremos con la extensión .js y lo subiremos a la máquina.
 
