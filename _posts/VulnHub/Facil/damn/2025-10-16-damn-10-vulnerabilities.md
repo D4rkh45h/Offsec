@@ -291,7 +291,7 @@ en este sitio, para ver que ocurre.
 
 ![Cap32](/assets/img/maquinas/VulnHub/damn/XSS(DOM)/XSS(DOM)_Cap3.png)
 
-El código que inyectaremos sera este, **<script>alert(1);</script>**, si nos aparece una alerta, esta parte de la web
+El código que inyectaremos sera este, ```<script>alert(1);</script>```, si nos aparece una alerta, esta parte de la web
 es vulnerable a código javascript, con lo cual es una vulnerabilidad XSS en este caso de tipo DOM.
 
 ![Cap33](/assets/img/maquinas/VulnHub/damn/XSS(DOM)/XSS(DOM)_Cap4.png)
