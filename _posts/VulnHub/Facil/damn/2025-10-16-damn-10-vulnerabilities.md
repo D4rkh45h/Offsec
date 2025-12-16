@@ -4,7 +4,7 @@ title: "VulnHub - damn 10 Vulnerabilities"
 date: 2025-10-16 10:00:00 +0100 # Fecha y hora de publicación (YYYY-MM-DD HH:MM:SS +ZonaHoraria)
 description: >-
   Este es un writeup de la máquina de VulnHub, damn 10 Vulnerabilities, la 1.10.
-categories: [VulnHub, Facil, Linux]
+categories: [VulnHub, Fácil, Linux]
 tags: [Vulnhub, writeup, damn 10 Vulnerabilities, Brute Force]
 author: D4rkh45h
 pin: false
