@@ -14,26 +14,18 @@ image: /assets/img/maquinas/VulnHub/Mr.Robot/Mr.Robot_Cap/maquina.jpg
 
 # VulnHub – Mr. Robot
 
-## Descripción General
+## 🧠 Overview
 
-**Mr. Robot** es una máquina de **dificultad fácil** disponible en la plataforma **VulnHub**.  
-En este laboratorio se practican técnicas como:
-
-- Enumeración de servicios
-- Análisis web
-- Fuerza bruta
-- Explotación de WordPress
-- Escalada de privilegios en Linux
+**Mr. Robot** es una máquina de **dificultad fácil** disponible en **VulnHub**.  
+Este laboratorio es ideal para practicar técnicas de **enumeración, análisis web, fuerza bruta, explotación de WordPress y escalada de privilegios en sistemas Linux**.
 
 ---
 
-## Enumeración
-
-### Escaneo de Puertos
+## 🔎 Escaneo de puertos
 
 Comenzamos realizando un escaneo de puertos para identificar los servicios expuestos por la máquina objetivo.
 
-Los puertos detectados fueron:
+Los puertos abiertos identificados son:
 
 - **22** (SSH)
 - **80** (HTTP)
@@ -43,19 +35,19 @@ Los puertos detectados fueron:
 
 ---
 
-## Enumeración Web
+## 🕵️ Enumeración web
 
-### Acceso a la Página Principal
+### 🌐 Página principal
 
-Accedemos al servicio web que corre por el puerto **80**.
+Accedemos al servicio web que corre por el puerto **80** y observamos una página interactiva con estética de la serie *Mr. Robot*.
 
 ![Cap2](/assets/img/maquinas/VulnHub/Mr.Robot/Mr.Robot_Cap/Mr.Robot_Cap2.png)
 
 ---
 
-### Análisis de `robots.txt`
+### 🤖 Análisis de robots.txt
 
-Revisamos el archivo `robots.txt` para descubrir posibles rutas interesantes.
+Revisamos el archivo `robots.txt` en busca de información sensible.
 
 ![Cap3](/assets/img/maquinas/VulnHub/Mr.Robot/Mr.Robot_Cap/Mr.Robot_Cap3.png)
 
@@ -64,32 +56,31 @@ En este archivo encontramos:
 - Una **key**
 - Un **diccionario de palabras**
 
-Procedemos a descargar el diccionario para usarlo posteriormente.
+Descargamos el diccionario para utilizarlo en fases posteriores.
 
 ---
 
-### Fuzzing de Directorios
+### 📂 Fuzzing de directorios
 
-Realizamos un fuzzing para identificar directorios y archivos ocultos en la web.
+Realizamos fuzzing para descubrir rutas ocultas dentro del sitio web.
 
 ![Cap4](/assets/img/maquinas/VulnHub/Mr.Robot/Mr.Robot_Cap/Mr.Robot_Cap4.png)
 
-Gracias a esto, descubrimos la ruta del panel de login de WordPress:
+Gracias a este proceso identificamos el panel de login de WordPress:
 
 **http://mrobot.local/wp-login.php**
-
 
 ![Cap5](/assets/img/maquinas/VulnHub/Mr.Robot/Mr.Robot_Cap/Mr.Robot_Cap5.png)
 
 ---
 
-### Identificación de Vulnerabilidad
+### ⚠️ Identificación de vulnerabilidad
 
-Detectamos que el sitio utiliza **WordPress 4.3.1**, versión que contiene vulnerabilidades conocidas.
+Detectamos que el sitio utiliza **WordPress 4.3.1**, una versión con vulnerabilidades conocidas.
 
 ![Cap6](/assets/img/maquinas/VulnHub/Mr.Robot/Mr.Robot_Cap/Mr.Robot_Cap6.png)
 
-Probamos usuarios comunes de WordPress y, dado el contexto de la máquina, utilizamos el nombre del protagonista de la serie:
+Probamos usuarios comunes de WordPress y, teniendo en cuenta la temática de la máquina, utilizamos:
 
 - **elliot**
 
@@ -97,45 +88,41 @@ Confirmamos que el usuario es válido.
 
 ---
 
-### Ataque de Fuerza Bruta
+### 🔓 Ataque de fuerza bruta
 
-Utilizamos el diccionario obtenido previamente para realizar un ataque de fuerza bruta contra el panel de login.
+Utilizamos el diccionario obtenido desde `robots.txt` para realizar un ataque de fuerza bruta contra el panel de login.
 
-Tras un tiempo, conseguimos la contraseña y logramos acceso al panel de WordPress.
+Tras un tiempo, conseguimos las credenciales correctas y accedemos al panel de administración de WordPress.
 
 ![Cap7](/assets/img/maquinas/VulnHub/Mr.Robot/Mr.Robot_Cap/Mr.Robot_Cap7.png)
 
 ---
 
-## Explotación
+## 🚪 Acceso inicial
 
-### Obtención de Reverse Shell
+### 🐚 Obtención de Reverse Shell
 
-Editamos el archivo `404.php` del tema activo e insertamos una reverse shell.  
-Posteriormente, accedemos a dicha página desde el navegador para ejecutar el código.
+Desde el panel de WordPress, editamos el archivo `404.php` del tema activo e insertamos una **reverse shell**.
+
+Accedemos a la página modificada y recibimos la conexión en nuestra máquina atacante.
 
 ![Cap8](/assets/img/maquinas/VulnHub/Mr.Robot/Mr.Robot_Cap/Mr.Robot_Cap8.png)
 
-Con esto obtenemos acceso a la máquina.
-
 ---
 
-## Acceso Inicial
+## 👤 Enumeración de usuarios
 
-Dentro del sistema, encontramos en el directorio:
+Una vez dentro del sistema, exploramos el directorio:
 
 **/home/robot/**
 
-Una contraseña en formato hash:
+Aquí encontramos un archivo que contiene un hash de contraseña:
 
 **robot:c3fcd3d76192e4007dfb496cca67e13b**
 
-Identificamos el tipo de hash utilizando `hash-identifier`.
-
 ![Cap9](/assets/img/maquinas/VulnHub/Mr.Robot/Mr.Robot_Cap/Mr.Robot_Cap9.png)
 
-El hash corresponde a **MD5**.  
-Tras crackearlo, obtenemos la contraseña en texto claro:
+Identificamos el hash como **MD5** y, tras crackearlo, obtenemos la contraseña en texto claro:
 
 **abcdefghijklmnopqrstuvwxyz**
 
@@ -143,19 +130,19 @@ Accedemos al sistema como el usuario **robot**.
 
 ---
 
-## Escalada de Privilegios
+## ⬆️ Escalada de privilegios
 
-Ejecutamos el comando `find` para localizar binarios con permisos especiales.
+Buscamos binarios con permisos especiales utilizando `find`.
 
 ![Cap10](/assets/img/maquinas/VulnHub/Mr.Robot/Mr.Robot_Cap/Mr.Robot_Cap10.png)
 
-Detectamos que **nmap** puede ser explotado para escalar privilegios.
+Identificamos que el binario **nmap** puede ser explotado para escalar privilegios.
 
 ---
 
-### Explotación de Nmap
+### 💥 Explotación de Nmap
 
-Ejecutamos nmap en modo interactivo:
+Ejecutamos **nmap** en modo interactivo para escalar privilegios:
 
 ```bash
 /usr/local/bin/nmap --interactive
@@ -164,7 +151,8 @@ LFILE=file_to_write
 ./nmap -oG=$LFILE DATA
 ```
 
-Con privilegios de **root** obtenidos, la máquina queda completamente comprometida.
+🏁 Conclusión
 
-✅ **Machine pwnd!**
+Tras explotar una mala configuración del binario nmap, conseguimos acceso como root y control total del sistema.
 
+✅ Máquina pwnd!
